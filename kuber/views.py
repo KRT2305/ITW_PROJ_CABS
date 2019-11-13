@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import revs
+from django.shortcuts import render,redirect
+from .models import revs,reservations
 from django.contrib.auth.models import User, auth
 # Create your views here.
 def index(request):
@@ -9,7 +9,10 @@ def index(request):
         origin=request.POST['origin']
         destination=request.POST['destination']
         time=request.POST['time']
-        user= request.user
+        user= str(request.user)
+        k = reservations.objects.create(user=user,phone=phone,date=date,time=time)
+        
+        return redirect('/')
     else:
         revw= revs.objects.all()
         return render(request,'index.html',{'revw' : revw})

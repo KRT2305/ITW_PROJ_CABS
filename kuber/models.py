@@ -7,6 +7,5 @@ class revs(models.Model):
 class reservations(models.Model):
     user = models.CharField(max_length=30)
     phone = models.CharField(max_length=15)
-    date = models.DateField()
-    time = models.TimeField()
-    
+    date = models.CharField(max_length=11)
+    time = models.CharField(max_length=10)
